@@ -5,8 +5,6 @@ categories: [Projects]
 tags: [powershell, windows, sysadmin, scripting]
 ---
 
-# Building a Windows 11 Readiness Checker in PowerShell
-
 I was part of the team running a Windows 11 migration at a medium-sized healthcare organization with over 5,000 endpoints. Only around half of those could be automatically updated, the rest had multiple requirements missing. We kept getting huge lists every week of computers that needed to be worked on and we went through them as fast as we could, but I soon realized there was a lot of repetition. Always having to open the TPM console to check the version, or opening Disk Management to see whether a drive had been converted to GPT or not.
 
 Soon enough I realized this would be a great opportunity to learn PowerShell scripting, so that was my plan.
