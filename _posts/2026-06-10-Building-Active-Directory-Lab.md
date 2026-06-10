@@ -91,8 +91,8 @@ Most importantly, it supports `-WhatIf`.
 
 ```powershell
 .\New-LabUser.ps1 `
-  -FirstName Morgan `
-  -LastName Read `
+  -FirstName John `
+  -LastName Doe `
   -Department HR `
   -TemporaryPassword "ChangeMe123!" `
   -WhatIf `
@@ -122,7 +122,19 @@ The remaining tools fill out the administrative workflow:
 - `Backup-LabGPOs.ps1` creates a timestamped backup of the six expected GPOs using Microsoft’s `Backup-GPO` cmdlet.
 - `Remove-StaleLocalProfiles.ps1` targets old domain profiles on Windows endpoints while skipping loaded and special profiles.
 
-The profile cleanup script received extra guardrails because deleting profile data has a much larger consequence than producing a report. It defaults to domain profiles only, excludes built-in accounts, supports `-WhatIf`, and can skip cleanup entirely when the workstation already has enough free disk space.
+The profile cleanup script received extra guardrails because deleting profile data has a much larger consequence than producing a report. It defaults to domain profiles only, excludes built-in accounts, and supports `-WhatIf`.
+
+It also has a configurable free-space gate. The default threshold is 20 GB, but `-MinimumFreeSpaceGB` lets the person running it choose an amount that fits the task. For example, I could target workstations with less than 64 GB free during Windows 11 migration work:
+
+```powershell
+.\Remove-StaleLocalProfiles.ps1 `
+  -DaysInactive 180 `
+  -MinimumFreeSpaceGB 64 `
+  -WhatIf `
+  -Verbose
+```
+
+In that example, a PC with 64 GB or more free is skipped. A PC below 64 GB continues to the stale-profile checks. Setting `-MinimumFreeSpaceGB 0` disables the free-space gate entirely.
 
 ## The Windows Environment Behind the Scripts
 
