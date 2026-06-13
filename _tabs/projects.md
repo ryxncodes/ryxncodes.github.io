@@ -17,6 +17,8 @@ order: 1
   }
 
   .project-card {
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--main-border-color);
     border-radius: 8px;
     padding: 1.1rem;
@@ -99,7 +101,8 @@ order: 1
   }
 
   .project-tracker {
-    margin: .9rem 0 1rem;
+    margin: auto 0 1rem;
+    padding-top: .9rem;
   }
 
   .project-tracker-label {
@@ -173,6 +176,7 @@ order: 1
       <div class="project-meter"><span style="width: 100%;"></span></div>
     </div>
     <div class="project-actions">
+      <a href="/posts/Windows_11_PowerShell_Script/"><i class="fas fa-book-open"></i> Write-up</a>
       <a href="https://github.com/ryxncodes/Windows-11-Migration-Script" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
     </div>
   </article>
